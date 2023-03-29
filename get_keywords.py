@@ -1,11 +1,13 @@
-
-from sklearn.feature_extraction.text import TfidfTransformer
 import spacy 
 
-def tokenize(text):
+#function to return the keywords of the text
+def keywords(text):
+    #loading spacy language model
     nlp = spacy.load('en_core_web_sm')
-    doc = nlp(text.lower())
-    return doc 
+    #tokenize
+    doc = nlp(text)
+    #returning named entities 
+    return doc.ents
 
 #temporary function for testing 
 def example():
@@ -13,11 +15,11 @@ def example():
     return text
 
 
-
 def main():
     text = example()
-    tokenized = tokenize(text)
-    print(type(tokenized))
+    test = keywords(text)
+    print(test)
+
 
 
 if __name__ == '__main__':
