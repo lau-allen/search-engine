@@ -23,13 +23,13 @@ CREATE TABLE searches
 COMMIT;
 
 /*
-table, google_results 
+table, search_results 
 Columns: 
 url_id - unique id for url resulted from search query
 search_id - foreign key to searches for the unique search query number
 url - url resulted from search 
 */
-CREATE TABLE google_results
+CREATE TABLE search_results
 	(url_id INT NOT NULL AUTO_INCREMENT,
     url VARCHAR(2048) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
@@ -39,54 +39,4 @@ CREATE TABLE google_results
 ) ENGINE=InnoDB;
 COMMIT;
 
-/*
-table, bing_results 
-Columns: 
-url_id - unique id for url resulted from search query
-search_id - foreign key to searches for the unique search query number
-url - url resulted from search 
-*/
-CREATE TABLE bing_results
-	(url_id INT NOT NULL AUTO_INCREMENT,
-    url VARCHAR(2048) NULL, 
-    search_id INT NOT NULL REFERENCES searches(search_id),
-    raw_text TEXT NULL,
-    PRIMARY KEY(url_id),
-    FULLTEXT(raw_text)
-) ENGINE=InnoDB;
-COMMIT;
-
-/*
-table, yahool_results 
-Columns: 
-url_id - unique id for url resulted from search query
-search_id - foreign key to searches for the unique search query number
-url - url resulted from search 
-*/
-CREATE TABLE yahoo_results
-	(url_id INT NOT NULL AUTO_INCREMENT, 
-    url VARCHAR(2048) NULL, 
-    search_id INT NOT NULL REFERENCES searches(search_id),
-    raw_text TEXT NULL,
-    PRIMARY KEY(url_id),
-    FULLTEXT(raw_text)
-) ENGINE=InnoDB;
-COMMIT;
-
-/*
-table, duckduckgo_results
-Columns: 
-url_id - unique id for url resulted from search query
-search_id - foreign key to searches for the unique search query number
-url - url resulted from search 
-*/
-CREATE TABLE duckduckgo_results
-	(url_id INT NOT NULL AUTO_INCREMENT,
-    url VARCHAR(2048) NULL, 
-    search_id INT NOT NULL REFERENCES searches(search_id),
-    raw_text TEXT NULL,
-    PRIMARY KEY(url_id),
-    FULLTEXT(raw_text)
-) ENGINE=InnoDB;
-COMMIT;
 
