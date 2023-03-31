@@ -29,7 +29,7 @@ ad_block_list = ['http://www.google.com/aclk','help.ads.microsoft',
                 ]
 
 #parameters for MySQL connector to defined database 
-mySQLparams = {'user':'root','database':'MY_CUSTOM_BOT','password':''}
+mySQLparams = {'user':'root','database':'SEARCH_ENGINE_DB','password':''}
 
 #tables in MySQL database to insert data into
 tables = {'Bing':'bing_results', 'Google':'google_results', 'Yahoo':'yahoo_results','DuckDuckGo':'duckduckgo_results'}
