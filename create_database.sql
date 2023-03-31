@@ -1,13 +1,12 @@
 /*
-Web Search ETL 
-Allen Lau
+Search Engine DB 
 */
--- Create Database named MY_CUSTOM_BOT
-CREATE DATABASE MY_CUSTOM_BOT; 
+-- Create Database named SEARCH_ENGINE_DB
+CREATE DATABASE SEARCH_ENGINE_DB; 
 COMMIT;
 
--- define MY_CUSTOM_BOT as database to perform actions on
-USE MY_CUSTOM_BOT;
+-- define SEARCH_ENGINE_DB as database to perform actions on
+USE SEARCH_ENGINE_DB;
 /*
 table, searches 
 Columns: 
@@ -35,8 +34,9 @@ CREATE TABLE google_results
     url VARCHAR(2048) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
     raw_text TEXT NULL,
-    PRIMARY KEY(url_id)
-);
+    PRIMARY KEY(url_id),
+    FULLTEXT(raw_text)
+) ENGINE=InnoDB;
 COMMIT;
 
 /*
@@ -51,8 +51,9 @@ CREATE TABLE bing_results
     url VARCHAR(2048) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
     raw_text TEXT NULL,
-    PRIMARY KEY(url_id)
-);
+    PRIMARY KEY(url_id),
+    FULLTEXT(raw_text)
+) ENGINE=InnoDB;
 COMMIT;
 
 /*
@@ -67,8 +68,9 @@ CREATE TABLE yahoo_results
     url VARCHAR(2048) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
     raw_text TEXT NULL,
-    PRIMARY KEY(url_id)
-);
+    PRIMARY KEY(url_id),
+    FULLTEXT(raw_text)
+) ENGINE=InnoDB;
 COMMIT;
 
 /*
@@ -83,7 +85,8 @@ CREATE TABLE duckduckgo_results
     url VARCHAR(2048) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
     raw_text TEXT NULL,
-    PRIMARY KEY(url_id)
-);
+    PRIMARY KEY(url_id),
+    FULLTEXT(raw_text)
+) ENGINE=InnoDB;
 COMMIT;
 
