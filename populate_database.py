@@ -167,16 +167,13 @@ def main():
     #query for adding search info
     last_search_id = sql_execute(cursor,config.add_search,(input_query,engine),get_lastrowid=True)
 
-    #get config variables to use in for loop
-    add_engine_info = config.get_add_engineinfo(config.tables[engine])
-
     #inserting url info
     for text,url in cleaned_text_url:
         #restricting size of text for database constraint
         if len(text) > 60000:
             text = text[:60000]
         #execute query to add info to search engine tables
-        sql_execute(cursor,add_engine_info,(url,last_search_id,text))
+        sql_execute(cursor,config.add_search_results,(url,last_search_id,text))
         
     #commit data to database 
     connection.commit()
