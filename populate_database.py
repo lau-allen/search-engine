@@ -8,6 +8,7 @@ import async_timeout
 import urllib.parse
 import config
 import sys
+from functools import reduce 
 
 #function for prompting user to define search engine and query
 def get_inputs():
@@ -87,7 +88,8 @@ def get_raw_text(text):
     soup = BeautifulSoup(text,'html.parser')
     for script in soup(['script','style','template','TemplateString','ProcessingInstruction','Declaration','Doctype']):
         script.extract()
-    return (soup.get_text(strip=True).replace(u'\xa0', u' ').encode('ascii','ignore'))
+    text = [item.text.strip().replace(u'\xa0', u' ') for item in soup.find_all('p')]
+    return reduce(lambda x,y: x+' '+y,text,'')
 
 #async get html from url 
 async def get_html(session, url):
@@ -169,6 +171,9 @@ def main():
 
     #inserting url info
     for text,url in cleaned_text_url:
+        #if len of text is 0, then will not insert into DB, since it likely is a 404, javascript, etc. issue 
+        if len(text) == 0:
+            continue 
         #restricting size of text for database constraint
         if len(text) > 60000:
             text = text[:60000]
