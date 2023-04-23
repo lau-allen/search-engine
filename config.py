@@ -29,14 +29,15 @@ ad_block_list = ['http://www.google.com/aclk','help.ads.microsoft',
                 ]
 
 #parameters for MySQL connector to defined database 
-mySQLparams = {'user':'root','database':'MY_CUSTOM_BOT','password':''}
-
-#tables in MySQL database to insert data into
-tables = {'Bing':'bing_results', 'Google':'google_results', 'Yahoo':'yahoo_results','DuckDuckGo':'duckduckgo_results'}
+mySQLparams = {'user':'root','database':'SEARCH_ENGINE_DB','password':''}
 
 #sql query for inserting data into searches table 
 add_search = ('INSERT INTO searches(query,engine) values(%s, %s)')
 
-#return sql query for defined engine table 
-def get_add_engineinfo(engine):
-    return 'INSERT INTO '+engine+'(url,search_id,raw_text) values(%s,%s,%s)'
+#sql query for inserting url and text data into search_results tabel
+add_search_results = 'INSERT INTO search_results(url,search_id,raw_text) values(%s,%s,%s)'
+
+#query for finding relevant URLs and info from query input using MySQL Full-Text Search 
+def get_info(query):
+    return 'SELECT url FROM search_results WHERE MATCH (raw_text) AGAINST(\''+query+'\' IN NATURAL LANGUAGE MODE)' 
+    
