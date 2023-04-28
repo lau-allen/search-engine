@@ -83,13 +83,17 @@ def remove_dup(urls):
     #return filtered urls as a list 
     return list(new_urls.values())
 
-#get raw text from html resulting from engine scrape
+#get raw text from html resulting from engine scrap and get first title object in html
 def get_raw_text(text):
     soup = BeautifulSoup(text,'html.parser')
+    try: 
+        title = soup.title.get_text()
+    except AttributeError:
+        title = "N/A"
     for script in soup(['script','style','template','TemplateString','ProcessingInstruction','Declaration','Doctype']):
         script.extract()
     text = [item.text.strip().replace(u'\xa0', u' ') for item in soup.find_all('p')]
-    return reduce(lambda x,y: x+' '+y,text,'')
+    return reduce(lambda x,y: x+' '+y,text,''), title 
 
 #async get html from url 
 async def get_html(session, url):
@@ -170,15 +174,17 @@ def main():
     last_search_id = sql_execute(cursor,config.add_search,(input_query,engine),get_lastrowid=True)
 
     #inserting url info
-    for text,url in cleaned_text_url:
-        #if len of text is 0, then will not insert into DB, since it likely is a 404, javascript, etc. issue 
-        if len(text) == 0:
+    for text_title,url in cleaned_text_url:
+        #unpack text_title 
+        text,title = text_title
+        #if len of text is 50, then will not insert into DB, since it likely is a 404, javascript, etc. issue; also filter for words in data_filter
+        if len(text) < 50 or any(term in title for term in config.data_filter):
             continue 
         #restricting size of text for database constraint
         if len(text) > 60000:
             text = text[:60000]
         #execute query to add info to search engine tables
-        sql_execute(cursor,config.add_search_results,(url,last_search_id,text))
+        sql_execute(cursor,config.add_search_results,(url,last_search_id,title,text))
         
     #commit data to database 
     connection.commit()
