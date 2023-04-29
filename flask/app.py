@@ -12,7 +12,6 @@ def get_db_connection():
         password = "root",
         database = "SEARCH_ENGINE_DB"
     )
-
     return connection
 
 
@@ -28,12 +27,12 @@ def search(query):
     return results
 
 
-# @app.route('/populate', methods=['GET', 'POST'])
-# def populate():
-#     if request.method == 'POST':
+@app.route('/populate', methods=['GET', 'POST'])
+def populate():
+    if request.method == 'POST':
         
-#         return "results after scraping search engine and populating database"
-#     return "TO DO page to taking query to populate data"
+        return "results after scraping search engine and populating database"
+    return "TO DO page to taking query to populate data"
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -43,7 +42,6 @@ def index():
         results = search(query)
         return render_template('results.html', results=results)
     return render_template('index.html')
-
 
 
 if __name__ == '__main__':
