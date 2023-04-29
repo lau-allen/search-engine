@@ -33,6 +33,7 @@ CREATE TABLE search_results
 	(url_id INT NOT NULL AUTO_INCREMENT,
     url VARCHAR(2048) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
+    website_title VARCHAR(2048) NULL,
     raw_text TEXT NULL,
     PRIMARY KEY(url_id),
     FULLTEXT(raw_text)

@@ -28,6 +28,9 @@ ad_block_list = ['http://www.google.com/aclk','help.ads.microsoft',
                  'https://help.ads.microsoft.com','https://advertising.yahoo.com'
                 ]
 
+#list for additional filtering to ensure data is of good quality before populating the database 
+data_filter = ['Page Not Found','No such URL','Access denied']
+
 #parameters for MySQL connector to defined database 
 mySQLparams = {'user':'root','database':'SEARCH_ENGINE_DB','password':''}
 
@@ -35,7 +38,7 @@ mySQLparams = {'user':'root','database':'SEARCH_ENGINE_DB','password':''}
 add_search = ('INSERT INTO searches(query,engine) values(%s, %s)')
 
 #sql query for inserting url and text data into search_results tabel
-add_search_results = 'INSERT INTO search_results(url,search_id,raw_text) values(%s,%s,%s)'
+add_search_results = 'INSERT INTO search_results(url,search_id,website_title,raw_text) values(%s,%s,%s,%s)'
 
 #query for finding relevant URLs and info from query input using MySQL Full-Text Search 
 def get_info(query):
