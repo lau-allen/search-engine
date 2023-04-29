@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(203, 198, 236, 0.406);
+}
+
+.container {
+    text-align: center;
+    padding-top: 150px;
+}
+
+.logo {
+    width: 200px;
+}
+
+.search-form {
+    margin-top: 25px;
+}
+
+.search-input {
+    width: 400px;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.search-button {
+    color: azure;
+    margin: 15px;
+    height: 35px;
+    font-size: 16px;
+    background-color: #222768c5;
+    border: 1px solid #f8f9fa;
+    cursor: pointer;
+}
