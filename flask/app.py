@@ -1,6 +1,3 @@
-
-#importing required packages
-
 from flask import Flask, request, render_template
 import mysql.connector
 
@@ -23,8 +20,7 @@ def get_db_connection():
 def search(query):
     connection = get_db_connection()
     cursor = connection.cursor()
-    #text is limited to 300 character from raw text
-    cursor.execute('SELECT url, website_title, LEFT(raw_text, 300)  FROM search_results WHERE MATCH (raw_text) AGAINST(\''+query+'\' IN NATURAL LANGUAGE MODE)' )
+    cursor.execute('SELECT url, website_title, LEFT(raw_text, 300)  FROM search_results WHERE MATCH (raw_text) AGAINST(\''+query+'\' IN NATURAL LANGUAGE MODE)' )     #text is limited to 300 character from raw text
     results = cursor.fetchall()
     cursor.close()
     connection.close()
@@ -32,12 +28,12 @@ def search(query):
     return results
 
 
-@app.route('/populate', methods=['GET', 'POST'])
-def populate():
-    if request.method == 'POST':
+# @app.route('/populate', methods=['GET', 'POST'])
+# def populate():
+#     if request.method == 'POST':
         
-        return "results after scraping search engine and populating database"
-    return "TO DO page to taking query to populate data"
+#         return "results after scraping search engine and populating database"
+#     return "TO DO page to taking query to populate data"
 
 
 @app.route('/', methods=['GET', 'POST'])
