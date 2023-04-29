@@ -21,6 +21,3 @@ def main():
             print(err)
     else:
         connection.close()
-
-if __name__ == "__main__":
-    main()

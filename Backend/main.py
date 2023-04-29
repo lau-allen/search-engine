@@ -4,8 +4,6 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-
-
 class Engine(str, Enum):
     ggl = "Google"
     bng = "Bing"
@@ -24,3 +22,9 @@ async def search_query(query: Union[str, None] = None):
 @app.post("/populate")
 async def populate_DB(search_engine: Engine=Engine.bng, query: Union[str, None] = None):
     return f'searching {query} in {search_engine}'
+
+if __name__ == '__main__':
+
+    import database
+    print('connecting to database')
+    database.main()
