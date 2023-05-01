@@ -8,6 +8,7 @@ import async_timeout
 import urllib.parse
 import config
 import sys
+import copy 
 from functools import reduce 
 
 #function for prompting user to define search engine and query
@@ -140,6 +141,27 @@ def sql_execute(cursor, query, input, get_lastrowid = False):
     if (get_lastrowid): 
         return cursor.lastrowid
 
+#data filter to ensure content going into database is clean 
+def data_filter(query,title,text):
+    #lowercase inputs 
+    query = query.lower()
+    title = title.lower()
+    text = text.lower()
+    #list for filtering 
+    config_data_filter = config.data_filter
+    #if len of text is 50, then will not insert into DB, since it likely is a 404, javascript, etc. issue; also filter for words in data_filter
+    if len(text) < 50:
+        return True
+    #check if any of the filter keywords are in the query. if so, remove those keywords from the filter list 
+    if any(term in query for term in config_data_filter):
+        for term in copy.deepcopy(config_data_filter):
+            if term in query:
+                config_data_filter.remove(term)
+    #check if any of the remaining filter keywords are in the title, if so return false. Else return true
+    if any(term in title for term in config_data_filter):
+        return True
+    else:
+        return False 
 
 def main():
     #get engine and query from user 
@@ -177,8 +199,8 @@ def main():
     for text_title,url in cleaned_text_url:
         #unpack text_title 
         text,title = text_title
-        #if len of text is 50, then will not insert into DB, since it likely is a 404, javascript, etc. issue; also filter for words in data_filter
-        if len(text) < 50 or any(term in title for term in config.data_filter):
+        #additional filtering 
+        if data_filter(input_query,title,text):
             continue 
         #restricting size of text for database constraint
         if len(text) > 60000:
