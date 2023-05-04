@@ -1,16 +1,19 @@
 from flask import Flask, request, render_template
 import mysql.connector
+import backend.populate_database as populate
+import backend.config as config
 
 #creating flask app instance
 app = Flask(__name__)
 
 #function for connecting the database
 def get_db_connection():
+    mySQLparams = config.mySQLparams
     connection = mysql.connector.connect(
-        host = "localhost",
-        user = 'root',
-        password = "root",
-        database = "SEARCH_ENGINE_DB"
+        host = mySQLparams['host'],
+        user = mySQLparams['user'],
+        password = mySQLparams['password'],
+        database = mySQLparams['database']
     )
     return connection
 
@@ -29,10 +32,16 @@ def search(query):
 
 @app.route('/populate', methods=['GET', 'POST'])
 def populate():
-    if request.method == 'POST':
-        
-        return "results after scraping search engine and populating database"
-    return "TO DO page to taking query to populate data"
+    if request.method == 'GET':
+        #get user input for query and search engine choice 
+        query = request.form['query']
+        search_engine = 'Google'
+        results = search(query)
+        #call populate database with input_query and search_engine choice 
+        populate.main(results,search_engine)
+        #random code Allen put below. Need to replace with Adnan code. 
+        return render_template('results.html', results=results)
+    return render_template('index.html')
 
 
 @app.route('/', methods=['GET', 'POST'])

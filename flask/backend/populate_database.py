@@ -6,7 +6,7 @@ import aiohttp
 import asyncio
 import async_timeout
 import urllib.parse
-import config
+import backend.config as config
 import sys
 import copy 
 from functools import reduce 
@@ -163,9 +163,9 @@ def data_filter(query,title,text):
     else:
         return False 
 
-def main():
+def main(input_query,engine):
     #get engine and query from user 
-    engine, input_query = get_inputs()
+    #engine, input_query = get_inputs()
 
     if engine not in config.js_engines:
         #request html from web search
