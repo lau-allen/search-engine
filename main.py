@@ -3,7 +3,7 @@ import inquirer
 import populate_database
 import query_database
 
-#by Allen and Adnan
+#by Allen and Syed
 
 #function to prompt user to chose a script 
 def get_script():

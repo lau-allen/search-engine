@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+
+</head>
+<body>
+    <div class="results-container">
+        {% for result in results %}
+            <div class="result">
+                <div class="result-title">{{ result[1] }}</div>
+                <div class="result-url">{{ result[0] }}</div>
+                <div class="result-snippet">{{ result[2] }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- <ul>
+        {% for result in results %}
+            <li>{{ result[0] }}</li>
+        {% endfor %}
+    </ul> -->
+</body>
+</html>
