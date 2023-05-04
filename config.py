@@ -29,7 +29,7 @@ ad_block_list = ['http://www.google.com/aclk','help.ads.microsoft',
                 ]
 
 #list for additional filtering to ensure data is of good quality before populating the database 
-data_filter = ['Page Not Found','No such URL','Access denied']
+data_filter = ['page not found','no such url','access denied','n/a','error','404','not found','no such url']
 
 #parameters for MySQL connector to defined database 
 mySQLparams = {'user':'root','database':'SEARCH_ENGINE_DB','password':''}
