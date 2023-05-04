@@ -163,7 +163,7 @@ def data_filter(query,title,text):
     else:
         return False 
 
-def main(input_query,engine):
+def populate_database(input_query,engine):
     #get engine and query from user 
     #engine, input_query = get_inputs()
 
@@ -216,4 +216,4 @@ def main(input_query,engine):
     connection.close()
 
 if __name__ == '__main__':
-    main()
+    populate_database()

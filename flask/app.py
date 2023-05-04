@@ -38,7 +38,7 @@ def populate():
         search_engine = 'Google'
         results = search(query)
         #call populate database with input_query and search_engine choice 
-        populate.main(results,search_engine)
+        populate.populate_database(results,search_engine)
         #random code Allen put below. Need to replace with Adnan code. 
         return render_template('results.html', results=results)
     return render_template('index.html')
