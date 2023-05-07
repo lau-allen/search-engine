@@ -17,9 +17,13 @@ def index():
         engines = config.engines.keys()
         #loop through each engine and populate the database based on the query and engine
         for engine in engines:
+            print('Populating database for '+engine+'...')
             populate_db.populate_database(query,engine)
         #get the search results
         results = query_db.search(query)
+        #taking only top 10 results
+        if len(results)>10:
+            return render_template('results.html', results=results[:10])
         #display HTML
         return render_template('results.html', results=results)
     return render_template('index.html')

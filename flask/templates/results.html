@@ -9,11 +9,20 @@
     <div class="results-container">
         {% for result in results %}
             <div class="result">
-                <div class="result-title">{{ result[1] }}</div>
-                <div class="result-url">{{ result[0] }}</div>
+                <div class="result-title"> <a href="{{ result[0] }}">{{ result[1] }}</a></div>
+                <div class="result-url"> <a href="{{ result[0] }}">{{ result[0] }}</a></div>
+                {% if result[3] %}
+                <p style="margin: 0; color: rgba(181, 130, 37, 0.605);">
+                    {% for count in result[3][0] %}
+                        <span>{{ count[0] }}</span>:<span>{{ count[1] }}</span>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                | <span>Total:</span><span>{{ result[3][1] }}</span>
+                </p>
+                {% endif %}        
                 <div class="result-snippet">{{ result[2] }}</div>
             </div>
         {% endfor %}
     </div>
 </body>
 </html>
+
