@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import mysql.connector
+import time
 
 #creating flask app instance
 app = Flask(__name__)
@@ -26,18 +27,10 @@ def search(query):
 
     return results
 
-
-@app.route('/populate', methods=['GET', 'POST'])
-def populate():
-    if request.method == 'POST':
-        
-        return "results after scraping search engine and populating database"
-    return "TO DO page to taking query to populate data"
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        time.sleep(120)
         query = request.form['query']
         results = search(query)
         return render_template('results.html', results=results)
