@@ -30,3 +30,29 @@ body {
     border: 1px solid #f8f9fa;
     cursor: pointer;
 }
+
+#loader1234 {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 50%;
+    top: 50%;
+    z-index: 999;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 10px solid #f2f1f6d6;
+    border-radius: 50%;
+    border-top: 10px solid #0c7ca1b1;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
