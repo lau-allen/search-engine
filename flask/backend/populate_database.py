@@ -6,7 +6,7 @@ import aiohttp
 import asyncio
 import async_timeout
 import urllib.parse
-import config
+import backend.config as config
 import sys
 import copy 
 from functools import reduce 
@@ -114,6 +114,8 @@ async def get_html(session, url):
         return 'Error: ServerDisconnected', url 
     except UnicodeDecodeError:
         return 'Error: UnicodeDecodeError', url
+    except aiohttp.client_exceptions.ClientConnectorError:
+        return 'Error: ClientConnectorError', url
     
 #define tasks for the urls 
 async def get_all(session, urls):
@@ -163,9 +165,9 @@ def data_filter(query,title,text):
     else:
         return False 
 
-def main():
+def populate_database(input_query,engine):
     #get engine and query from user 
-    engine, input_query = get_inputs()
+    #engine, input_query = get_inputs()
 
     if engine not in config.js_engines:
         #request html from web search
@@ -216,4 +218,4 @@ def main():
     connection.close()
 
 if __name__ == '__main__':
-    main()
+    populate_database()

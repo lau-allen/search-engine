@@ -31,12 +31,13 @@ url - url resulted from search
 */
 CREATE TABLE search_results
 	(url_id INT NOT NULL AUTO_INCREMENT,
-    url VARCHAR(2048) NULL, 
+    url VARCHAR(768) NULL, 
     search_id INT NOT NULL REFERENCES searches(search_id),
     website_title VARCHAR(2048) NULL,
     raw_text TEXT NULL,
     PRIMARY KEY(url_id),
-    FULLTEXT(raw_text)
+    FULLTEXT(raw_text),
+    UNIQUE(url)
 ) ENGINE=InnoDB;
 COMMIT;
 
