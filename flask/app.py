@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 import mysql.connector
-import time
+
 
 #creating flask app instance
 app = Flask(__name__)
@@ -30,7 +30,6 @@ def search(query):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        time.sleep(120)
         query = request.form['query']
         results = search(query)
         return render_template('results.html', results=results)
