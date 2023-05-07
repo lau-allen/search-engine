@@ -29,30 +29,19 @@ def search(query):
 
     return results
 
-
-# @app.route('/populate', methods=['GET', 'POST'])
-# def populate():
-#     if request.method == 'GET':
-#         #get user input for query and search engine choice 
-#         query = request.form['query']
-#         search_engine = 'Google'
-#         results = search(query)
-#         #call populate database with input_query and search_engine choice 
-#         populate.populate_database(results,search_engine)
-#         #random code Allen put below. Need to replace with Adnan code. 
-#         return render_template('results.html', results=results)
-#     return render_template('index.html')
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        #get query from user input on frontend 
         query = request.form['query']
+        #define engines to query from
         engines = config.engines.keys()
+        #loop through each engine and populate the database based on the query and engine
         for engine in engines:
             populate.populate_database(query,engine)
+        #get the search results
         results = search(query)
-
+        #display HTML
         return render_template('results.html', results=results)
     return render_template('index.html')
 

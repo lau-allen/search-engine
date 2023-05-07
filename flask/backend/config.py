@@ -25,7 +25,9 @@ block_list = ['https://www.bing.com/new/termsofuse','https://privacy.microsoft.c
 
 #list of urls pertaining to ads to exclude from search engine results
 ad_block_list = ['http://www.google.com/aclk','help.ads.microsoft',
-                 'https://help.ads.microsoft.com','https://advertising.yahoo.com'
+                 'https://help.ads.microsoft.com','https://advertising.yahoo.com',
+                 'https://help.duckduckgo.com/duckduckgo-help-pages/company/ads-by-microsoft-on-duckduckgo-private-search',
+                 'https://duckduckgo.com/y.js?ad_domain','https://mobile.mail.yahoo.com/apps/affiliateRouter?brandUrl'
                 ]
 
 #list for additional filtering to ensure data is of good quality before populating the database 
@@ -38,7 +40,7 @@ mySQLparams = {'host':'localhost','user':'root','database':'SEARCH_ENGINE_DB','p
 add_search = ('INSERT INTO searches(query,engine) values(%s, %s)')
 
 #sql query for inserting url and text data into search_results tabel
-add_search_results = 'INSERT INTO search_results(url,search_id,website_title,raw_text) values(%s,%s,%s,%s)'
+add_search_results = 'INSERT IGNORE INTO search_results(url,search_id,website_title,raw_text) values(%s,%s,%s,%s)'
 
 #query for finding relevant URLs and info from query input using MySQL Full-Text Search 
 def get_info(query):
