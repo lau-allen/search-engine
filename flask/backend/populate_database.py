@@ -114,6 +114,8 @@ async def get_html(session, url):
         return 'Error: ServerDisconnected', url 
     except UnicodeDecodeError:
         return 'Error: UnicodeDecodeError', url
+    except aiohttp.client_exceptions.ClientConnectorError:
+        return 'Error: ClientConnectorError', url
     
 #define tasks for the urls 
 async def get_all(session, urls):

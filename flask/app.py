@@ -30,25 +30,29 @@ def search(query):
     return results
 
 
-@app.route('/populate', methods=['GET', 'POST'])
-def populate():
-    if request.method == 'GET':
-        #get user input for query and search engine choice 
-        query = request.form['query']
-        search_engine = 'Google'
-        results = search(query)
-        #call populate database with input_query and search_engine choice 
-        populate.populate_database(results,search_engine)
-        #random code Allen put below. Need to replace with Adnan code. 
-        return render_template('results.html', results=results)
-    return render_template('index.html')
+# @app.route('/populate', methods=['GET', 'POST'])
+# def populate():
+#     if request.method == 'GET':
+#         #get user input for query and search engine choice 
+#         query = request.form['query']
+#         search_engine = 'Google'
+#         results = search(query)
+#         #call populate database with input_query and search_engine choice 
+#         populate.populate_database(results,search_engine)
+#         #random code Allen put below. Need to replace with Adnan code. 
+#         return render_template('results.html', results=results)
+#     return render_template('index.html')
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         query = request.form['query']
+        engines = config.engines.keys()
+        for engine in engines:
+            populate.populate_database(query,engine)
         results = search(query)
+
         return render_template('results.html', results=results)
     return render_template('index.html')
 
