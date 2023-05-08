@@ -6,6 +6,13 @@
 
 </head>
 <body>
+    <div class="container" id="search1234">
+        <form class="search-form" method="post" action="/">
+            <img src="/static/images/logo.png",alt='logo'/>
+            <input type="text" name="query" class="search-input" placeholder="Search...">
+            <input type="submit" value="Search" class="search-button" onclick="loadPage()">
+        </form>
+    </div>
     <div class="results-container">
         {% for result in results %}
             <div class="result">
@@ -23,6 +30,20 @@
             </div>
         {% endfor %}
     </div>
+    <script>
+        // var myVar;
+        
+        function loadPage() {
+            document.getElementById("loader99").style.display = "block";
+            document.getElementById("search1234").style.display = "none";
+
+        }
+        
+        function showPage() {
+          document.getElementById("loader99").style.display = "none";
+          document.getElementById("search1234").style.display = "block";
+        }
+    </script>
 </body>
 </html>
 
