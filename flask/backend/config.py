@@ -34,7 +34,7 @@ ad_block_list = ['http://www.google.com/aclk','help.ads.microsoft',
 data_filter = ['page not found','no such url','access denied','n/a','error','404','not found','no such url']
 
 #parameters for MySQL connector to defined database 
-mySQLparams = {'host':'localhost','user':'root','database':'SEARCH_ENGINE_DB','password':'root'}
+mySQLparams = {'host':'localhost','user':'root','database':'SEARCH_ENGINE_DB','password':''}
 
 #sql query for inserting data into searches table 
 add_search = ('INSERT INTO searches(query,engine) values(%s, %s)')
