@@ -9,19 +9,17 @@
     <div id="loader99">
         <div class="preloader" id="loader1234">
         </div>
-        <h6 style="color: rgba(128, 128, 128, 0.595);">Populating Database...</h6>
+        <h6 style="color: rgba(69, 62, 62, 0.595);">Populating Database...</h6>
     </div>
     <div class="container" id="search1234">
-        <img src="/static/images/logo.png",alt='logo'/>
+        <img src="/static/images/logo.png",alt='logo', style="width: 800px;"/>
         <form class="search-form" method="post" action="/">
             <input type="text" name="query" class="search-input" placeholder="Search...">
             <br>
             <input type="submit" value="Search" class="search-button" onclick="loadPage()">
         </form>
     </div>
-    <script>
-        // var myVar;
-        
+    <script>        
         function loadPage() {
             document.getElementById("loader99").style.display = "block";
             document.getElementById("search1234").style.display = "none";

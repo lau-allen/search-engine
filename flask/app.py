@@ -3,7 +3,6 @@ import backend.populate_database as populate_db
 import backend.query_database as query_db
 import backend.config as config
 
-
 #creating flask app instance
 app = Flask(__name__)
 
