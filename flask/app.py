@@ -24,7 +24,7 @@ def index():
         if len(results)>10:
             return render_template('results.html', results=results[:10])
         #display HTML
-        return render_template('results.html', results=results)
+        # return render_template('results.html', results=results)
     return render_template('index.html')
 
 
