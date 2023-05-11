@@ -2,7 +2,7 @@
 engines = {'Google':'http://google.com/search?q=',
            'Bing':'https://www.bing.com/search?q=',
            'Yahoo':'https://search.yahoo.com/search?p=',
-        #    'DuckDuckGo':'https://html.duckduckgo.com/html/?q='
+           'DuckDuckGo':'https://html.duckduckgo.com/html/?q='
            }
 
 #list of engines that use javascript
