@@ -8,11 +8,11 @@ The goal of this search engine is to provide a tool that compiles the search res
 4. Run search engine on local environment: python app.py 
   
 # Major Files Breakdown
-* create_database.sql - MySQL script for creating databases, including the tables for storing the searches and search results, constraints for primary keys, foreign key relationships, auto incrementing of primary key IDs, etc.
-*	app.py - Entry point for the Foogle search engine, which calls the other scripts like the HTML, CSS, and Python scripts that make the project function 
-*	populate_database.py - Logic for querying Google, Bing, Yahoo, DuckDuckGo, providing pipeline for retrieving data, cleaning data, etc. and populating the MySQL Database 
-*	query_database.py - Logic for taking a user-input query, finding the relevant websites using natural language processing from the MySQL database, and returning a keyword sorted list of websites that are curated as the more relevant results to the user. 
-*	conda_requirements.txt - dependencies file for creating conda environment to run project 
-*	DSEI240_SearchEngine_AllenLau_SyedFaquaruddinQuadri.pdf - presentation 
+* [create_database.sql](https://github.com/lau-allen/search-engine/blob/main/create_database.sql) - MySQL script for creating databases, including the tables for storing the searches and search results, constraints for primary keys, foreign key relationships, auto incrementing of primary key IDs, etc.
+*	[app.py](https://github.com/lau-allen/search-engine/blob/main/flask/app.py) - Entry point for the search engine, which calls the other scripts like the HTML, CSS, and Python scripts that make the project function 
+*	[populate_database.py](https://github.com/lau-allen/search-engine/blob/main/flask/backend/populate_database.py) - Logic for querying Google, Bing, Yahoo, DuckDuckGo, providing pipeline for retrieving data, cleaning data, etc. and populating the MySQL Database 
+*	[query_database.py](https://github.com/lau-allen/search-engine/blob/main/flask/backend/query_database.py) - Logic for taking a user-input query, finding the relevant websites using natural language processing from the MySQL database, and returning a keyword sorted list of websites that are curated as the more relevant results to the user. 
+*	[conda_requirements.txt](https://github.com/lau-allen/search-engine/blob/main/conda_requirements.txt) - dependencies file for creating conda environment to run project 
+*	[DSEI240_SearchEngine_AllenLau_SyedFaquaruddinQuadri.pdf](https://github.com/lau-allen/search-engine/blob/main/DSEI240_SearchEngine_AllenLau_SyedFaquaruddinQuadri.pdf) - presentation 
 
 
