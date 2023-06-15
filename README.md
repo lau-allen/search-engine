@@ -13,6 +13,6 @@ The goal of this search engine is to provide a tool that compiles the search res
 *	[populate_database.py](https://github.com/lau-allen/search-engine/blob/main/flask/backend/populate_database.py) - Logic for querying Google, Bing, Yahoo, DuckDuckGo, providing pipeline for retrieving data, cleaning data, etc. and populating the MySQL Database 
 *	[query_database.py](https://github.com/lau-allen/search-engine/blob/main/flask/backend/query_database.py) - Logic for taking a user-input query, finding the relevant websites using natural language processing from the MySQL database, and returning a keyword sorted list of websites that are curated as the more relevant results to the user. 
 *	[conda_requirements.txt](https://github.com/lau-allen/search-engine/blob/main/conda_requirements.txt) - dependencies file for creating conda environment to run project 
-*	[DSEI240_SearchEngine_AllenLau_SyedFaquaruddinQuadri.pdf](https://github.com/lau-allen/search-engine/blob/main/DSEI240_SearchEngine_AllenLau_SyedFaquaruddinQuadri.pdf) - presentation 
+*	[search_engine_presentation.pdf](https://github.com/lau-allen/search-engine/blob/main/search_engine_presentation.pdf) - presentation 
 
 
